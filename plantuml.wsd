@@ -1,0 +1,135 @@
+/'
+Clases candidatas:
+Retiro:
+    nombre, costo, fecha inicio, fecha fin, descripción, ubicación, hospedaje, insumos necesarios, transporte, contacto, fecha limite, actividades, estado.
+    emitir alerta de retiro.
+    listar por atributo.
+    modificar atributo.
+    modificar estado.
+    actualizar estado manual
+    actualizar estado automatico
+    consultar pago
+
+Estado
+    nombre, descripcion
+
+Valoraciones
+    puntaje, descripción.
+    consultar
+    modificar
+
+Puntaje
+    Aqui se especifican los puntajes a elegir (0,5)
+    valor
+
+Pago
+    Aqui se registran los pagos relacionados a los retiros.
+    fecha de pago y monto.
+    modificar pago.
+    emitir alerta pago 1 semana
+    emitir alerta pago 3 dias
+    emitir alerta pago 1 dia
+
+Actividades
+    nombre, descripción
+    modificar actividad
+    filtrar actividad
+
+Relaciones:
+Los retiros se relacionan con todas las demas clases.
+'/
+
+@startuml
+
+class Retiro{
+    nombre
+    descripción
+
+    fechaInicio
+    fechaFin
+    fechaLimite
+
+    ubicación
+    hospedaje
+    insumos
+    transporte
+    contacto
+    costo
+
+    actividades: Actividades
+    estado: Estado
+    pago: Pago
+    valoracion: Valoracion
+
+    crear()
+    mostrar()
+
+    emitirAlertaRetiro()
+    listarPorAtributo()
+
+    modificarAtributo()
+
+    actualizarEstadoManual()
+    actualizarEstadoAutomatico()
+
+    conocerValoracion()
+    conocerActividad()
+    conocerEstado()
+    conocerPago()
+}
+
+class Estado{
+    nombre
+    descripcion
+
+    crear()
+    mostrar()
+}
+
+class Valoracion{
+    puntaje: Puntaje
+    descripcion
+
+    crear()
+    mostrar()
+    modificarAtributo()
+    conocerPuntaje()
+}
+
+class Puntaje{
+    valor
+
+    crear()
+    mostrar()
+}
+note right of Puntaje: Valor de 0 a 5
+
+class Pago{
+    fechaDePago
+    monto
+    
+    crear()
+    mostrar()
+    modificarAtributo()
+    emitirAlertaPagoSemana()
+    emitirAlertaPagoTresDias()
+    emitirAlertaPagoUnDia()
+}
+
+class Actividad{
+    nombre
+    descripción
+
+    crear()
+    mostrar()
+    modificarAtributo()
+    filtrarPorAtributos()
+}
+
+'Relaciones:
+Retiro -> "1" Estado
+Retiro -> "1" Valoracion
+Valoracion -> "1" Puntaje
+Retiro -> "1..*" Pago
+Retiro -> "1..*" Actividad
+@enduml
