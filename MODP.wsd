@@ -51,9 +51,9 @@ class Retiro{
 
     ubicación
     hospedaje
-    insumos
+    insumos: Insumo
     transporte
-    contacto
+    contacto: Contacto
     costo
 
     actividades: Actividades
@@ -72,6 +72,8 @@ class Retiro{
     actualizarEstadoManual()
     actualizarEstadoAutomatico()
 
+    conocerInsumo()
+    conocerContacto()
     conocerValoracion()
     conocerActividad()
     conocerEstado()
@@ -81,6 +83,24 @@ class Retiro{
 class Estado{
     nombre
     descripcion
+
+    crear()
+    mostrar()
+}
+
+class Insumo{
+    nombre
+    descripcion
+
+    crear()
+    mostrar()
+}
+
+class Contacto{
+    nombre
+    apellido
+    telefono
+    email
 
     crear()
     mostrar()
@@ -131,5 +151,7 @@ Retiro -> "1" Estado
 Retiro -> "1" Valoracion
 Valoracion -> "1" Puntaje
 Retiro -> "1..*" Pago
+Retiro -> "1..*" Insumo
+Retiro -> "1" Contacto
 Retiro -> "1..*" Actividad
 @enduml
