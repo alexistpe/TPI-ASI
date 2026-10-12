@@ -1,0 +1,49 @@
+@startuml
+'Actores: Usuario, Tiempo, -Soporte
+
+left to right direction
+
+:Usuario: as u
+:Tiempo: as t
+
+rectangle "Sistema de retiro"{
+    'Casos de uso
+    (1. Registrar nuevo retiro.) as 1
+    (2. Registrar nueva actividad.) as 2
+    (3. Registrar nueva valoracion.) as 3
+    (4. Registrar nuevo pago.) as 4
+    (5. Modificar retiro cargado.) as 5
+    (6. Modificar actividad cargada.) as 6
+    (7. Modificar valoracion cargada.) as 7
+    (8. Modificar pago cargado.) as 8
+    (9. Emitir alerta retiro proximo.) as 9
+    (10. Emitir alerta pago.) as 10
+    (11. Cambiar estado a cancelado) as 11
+    (12. Cambiar estado a dado de baja) as 12
+    (13. Cambiar estado a asistido) as 13
+    (14. Cambiar estado a reservado) as 14
+    (15. Cambiar estado a finalizado) as 15
+
+    'Relaciones
+    u -> 1
+    u -> 2
+    u -> 3
+
+    1 <. 2: <<extends>>
+    1 <. 4: <<extends>>
+    5 <. 4: <<extends>>
+    5 <. 11: <<extends>>
+    5 <. 12: <<extends>>
+    5 <. 13: <<extends>>
+    4 <. 14: <<extends>>
+
+    u -> 5
+    u -> 6
+    5 <. 7
+    u -> 8
+    
+    t -> 9
+    t -> 10
+    t -> 15
+}
+@enduml
